@@ -1,0 +1,9 @@
+.HomePage{
+    text-align: center;
+}
+
+.food{
+    width: 200px;
+    display: inline-block;
+    margin: auto;
+}

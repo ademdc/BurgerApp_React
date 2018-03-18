@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
-//import classes from './BurgerBuilder.css';
+import classes from './BurgerBuilder.css';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -13,7 +13,7 @@ const INGREDIENT_PRICES = {
     salad:0.5,
     cheese:0.4,
     meat: 1.3,
-    bacon: 0.7,
+    chicken: 0.7,
 };
 
 class BurgerBuilder extends Component {
@@ -29,7 +29,7 @@ class BurgerBuilder extends Component {
         }
     }
     componentDidMount () {
-        axios.get( 'https://react-my-burger-8c974.firebaseio.com/ingredients.json' )
+        axios.get( 'https://react-my-burger-8c974.firebaseio.com/ingredient.json' )
             .then( response => {
                 this.setState( { ingredients: response.data } );
             } )
@@ -119,14 +119,18 @@ class BurgerBuilder extends Component {
 
         if(this.state.ingredients){
             burger = (<Aux>
-                <Burger ingredients={this.state.ingredients}/>
-                <BuildControls
-                    ingredientAdded={this.addIngredientHandler}
-                    ingredientRemoved={this.removeIngredientHandler}
-                    disabled={disabledInfo}
-                    price={this.state.totalPrice}
-                    purchasable={this.state.purchesable}
-                    ordered={this.purchaseHandler}/>
+                <br></br>
+                <div className={classes.Burger}>
+                    <Burger ingredients={this.state.ingredients}/></div>
+                <div >
+                    <BuildControls
+                        ingredientAdded={this.addIngredientHandler}
+                        ingredientRemoved={this.removeIngredientHandler}
+                        disabled={disabledInfo}
+                        price={this.state.totalPrice}
+                        purchasable={this.state.purchesable}
+                        ordered={this.purchaseHandler}/>
+                </div>
             </Aux>);
 
             orderSummary = <OrderSummary
