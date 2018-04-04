@@ -1,9 +1,15 @@
 .HomePage{
     text-align: center;
+    margin-top:-17px;
+}
+
+.Background{
+
 }
 
 .food{
     width: 200px;
     display: inline-block;
     margin: auto;
+    box-sizing: 4px solid black;
 }

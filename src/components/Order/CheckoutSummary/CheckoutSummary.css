@@ -9,3 +9,55 @@
         width:500px;
     }
 }
+
+.Sauces{
+    margin: 20px auto;
+    width:80%;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border:1px solid #eee;
+    padding:10px;
+    box-sizing: border-box;
+}
+.Sauce{
+    text-align: center;
+    border:1px solid black;
+    margin:3px;
+    background-color: #8F5E1E;
+    color:white;
+    padding:10px;
+}
+
+.Sauce:hover {
+    background-color: #99703F;
+    color: white;
+}
+.Sauce input{
+    margin:10px;
+}
+
+.Drinks{
+    margin: 20px auto;
+    width:80%;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border:1px solid #eee;
+    padding:10px;
+    box-sizing: border-box;
+}
+.Drink{
+    text-align: center;
+    border:1px solid black;
+    margin:3px;
+    background-color: #8F5E1E;
+    color:white;
+    padding:10px;
+}
+
+.Drink:hover {
+    background-color: #99703F;
+    color: white;
+}
+.Drink input{
+    margin:10px;
+}

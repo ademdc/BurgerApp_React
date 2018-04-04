@@ -13,18 +13,21 @@ class HomePage extends Component {
         return (
             <Aux>
                 <div className={classes.HomePage}>
-                    <h2>Choose your food:</h2>
+                    <div className={classes.Background}>
+                        <h2>Choose your order:</h2>
 
-                    <NavLink to = "/burger" > <img className={classes.food} src={burgerPic} alt="Burger"/></NavLink>
-                    <br></br>
-                    <NavLink to="/pizza"><img className={classes.food} src={pizzaPic} alt="Pizza"/></NavLink>
-                    <br></br>
+                        <NavLink to = "/burger" > <img className={classes.food} src={burgerPic} alt="Burger"/></NavLink>
+                        <br></br>
+                        <NavLink to="/pizza"><img className={classes.food} src={pizzaPic} alt="Pizza"/></NavLink>
+                        <br></br>
 
-                    <NavLink to="/sandwich"><img className={classes.food} src={sandwichPic} alt="Sandwich"/></NavLink>
-                    <br></br>
+                        <NavLink to="/sandwich"><img className={classes.food} src={sandwichPic} alt="Sandwich"/></NavLink>
+                        <br></br>
 
-                    <Route path='/burger' component= {BurgerBuilder}/>
-                    <Route path='/pizza' component= {PizzaBuilder}/>
+                        <Route path='/burger' component= {BurgerBuilder}/>
+                        <Route path='/pizza' component= {PizzaBuilder}/>
+                    </div>
+
                 </div>
             </Aux>
         );
