@@ -7,39 +7,46 @@ class CheckoutSummary extends Component{
     constructor(props, context) {
         super(props, context)
         this.state = {
-            ketchup: 50,
-            mayo:50,
-            mustard:50,
+            sauces:
+                {
+                    ketchup: 50,
+                    mayo:50,
+                    mustard:50,
+                },
             drink:''
         }
     }
 
     handleChange = (event) => {
-        this.setState({ketchup: event.target.value});
+        let sauces = Object.assign({}, this.state.sauces);  //creating copy of object
+        sauces.ketchup = event.target.value;                //updating value
+        this.setState({sauces});
     }
     handleChange2 = (event) => {
-        this.setState({mustard: event.target.value});
+        let sauces = Object.assign({}, this.state.sauces);
+        sauces.mustard = event.target.value;
+        this.setState({sauces});
     }
     handleChange3 = (event) => {
-        this.setState({mayo: event.target.value});
-    }
-csvlsssf;'nsffsfsfssffsfsfsfs'
+        let sauces = Object.assign({}, this.state.sauces);
+        sauces.mayo = event.target.value;
+        this.setState({sauces});    }
     render(){
         let ketchupSlider = (
-            <input type="range" min="0" max="100" value={this.state.ketchup} className="slider"  onChange={this.handleChange}
+            <input type="range" min="0" max="100" value={this.state.sauces.ketchup} className="slider"  onChange={this.handleChange}
                    id="myRange"/>
         );
         let mustardSlider = (
-            <input type="range" min="0" max="100" value={this.state.mustard} className="slider"  onChange={this.handleChange2}
+            <input type="range" min="0" max="100" value={this.state.sauces.mustard} className="slider"  onChange={this.handleChange2}
                    id="myRange"/>
         );
         let mayoSlider = (
-            <input type="range" min="0" max="100" value={this.state.mayo} className="slider"  onChange={this.handleChange3}
+            <input type="range" min="0" max="100" value={this.state.sauces.mayo} className="slider"  onChange={this.handleChange3}
                    id="myRange"/>
         );
-        let outputKetchup = this.state.ketchup;
-        let outputMustard = this.state.mustard;
-        let outputMayo = this.state.mayo;
+        let outputKetchup = this.state.sauces.ketchup;
+        let outputMustard = this.state.sauces.mustard;
+        let outputMayo = this.state.sauces.mayo;
 
         let sauces= (
             <div className={classes.Sauces}>

@@ -9,14 +9,8 @@ import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import * as actions from '../../store/actions/index';
 
-const INGREDIENT_PRICES = {
-    salad:0.5,
-    cheese:0.4,
-    meat: 1.3,
-    chicken: 0.7,
-};
 
 class BurgerBuilder extends Component {
     constructor(props){
@@ -48,7 +42,12 @@ class BurgerBuilder extends Component {
 
 
     purchaseHandler = () =>{
+        if(this.props.isAuthenticated){
         this.setState({purchasing:true});
+        } else{
+            this.props.onSetAuthRedirectPath('/checkout');
+            this.props.history.push('/auth')
+        }
     }
 
     purchasedCancelHadler = () =>{
@@ -56,7 +55,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () =>{
-
+        this.props.onInitPurchase();
         this.props.history.push('/checkout');
     }
 
@@ -81,12 +80,13 @@ class BurgerBuilder extends Component {
                 <br></br>
                 <div className={classes.Burger}>
                     <Burger ingredients={this.props.ings}/></div>
-                <div >
+                <div>
                     <BuildControls
                         ingredientAdded={this.props.onIngredientAdded}
                         ingredientRemoved={this.props.onIngredientDeleted}
                         disabled={disabledInfo}
                         price={this.props.price}
+                        isAuth={this.props.isAuthenticated}
                         purchasable={this.updatePurchaseState(this.props.ings)}
                         ordered={this.purchaseHandler}/>
                 </div>
@@ -117,15 +117,18 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients,
-        price:state.price
+        ings: state.burgerBuilder.ingredients,
+        price:state.burgerBuilder.price,
+        isAuthenticated:state.auth.token !== null
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIngredientAdded: (ingName) => dispatch({type: actionTypes.ADD_INGREDIENT, ingredientName:ingName}),
-        onIngredientDeleted: (ingName) => dispatch({type: actionTypes.REMOVE_INGREDIENT, ingredientName:ingName}),
+        onIngredientAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
+        onIngredientDeleted: (ingName) => dispatch(actions.removeIngredient(ingName)),
+        onInitPurchase: ()=> dispatch(actions.purchaseInit()),
+        onSetAuthRedirectPath: (path)=> dispatch(actions.setAuthRedirectPath(path)),
     };
 };
 

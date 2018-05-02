@@ -1,3 +1,16 @@
-.PizzaBuilder{
+.PizzaBuilder {
     text-align: center;
+}
+.Content{
+    margin-top:50px;
+}
+
+.Burger{
+    background-color: ;
+    margin-top: -16px;
+}
+
+.BuildControls{
+    width:50%;
+    float:right;
 }
